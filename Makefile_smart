@@ -1,0 +1,23 @@
+CXX = g++
+CXXFLAGS = -O2 -Wall -Wno-misleading-indentation $(shell pkg-config --cflags Qt5Widgets opencv4)
+LDFLAGS = $(shell pkg-config --libs Qt5Widgets opencv4)
+
+OBJS = smartguard.o v4l2_camera.o
+TARGET = smartguard
+
+all: $(TARGET)
+
+smartguard.moc: smartguard.cpp
+	moc smartguard.cpp -o smartguard.moc
+
+smartguard.o: smartguard.cpp smartguard.moc
+	$(CXX) $(CXXFLAGS) -c smartguard.cpp -o smartguard.o
+
+v4l2_camera.o: v4l2_camera.cpp v4l2_camera.h
+	$(CXX) $(CXXFLAGS) -c v4l2_camera.cpp -o v4l2_camera.o
+
+$(TARGET): $(OBJS)
+	$(CXX) $(OBJS) $(LDFLAGS) -o $(TARGET)
+
+clean:
+	rm -f $(OBJS) smartguard.moc $(TARGET)

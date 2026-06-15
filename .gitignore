@@ -1,0 +1,29 @@
+# 编译产物
+smartguard
+*.o
+*.moc
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 敏感配置
+.env
+*.pem
+*.key
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# 临时文件
+/tmp/

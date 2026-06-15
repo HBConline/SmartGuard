@@ -1,0 +1,15 @@
+[Unit]
+Description=OneNET MQTT Data Reporter
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u /home/orangepi/onenet/mqtt_client.py
+WorkingDirectory=/home/orangepi/onenet
+Restart=always
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target
